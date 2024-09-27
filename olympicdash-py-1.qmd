@@ -1,6 +1,11 @@
 ---
 title: "Olympic Games"
-format: html
+format: 
+    dashboard:
+        orientation: columns
+        nav-buttons: [linkedin]
+        linkedin: https://github.com/prajwalccc13/olympicdash
+logo: images/olympics-logo.svg
 ---
 
 ```{python}
@@ -28,10 +33,11 @@ olympics.loc[:, "team"] = split_data[0]
 olympics.loc[:, "medal"] = pd.Categorical(olympics["medal"], categories = ["Bronze", "Silver", "Gold"])
 ```
 
-## Medals by sport
+## Column - Medals by Sport and year
+### Row - Medals by sport {height=50%}
 
 ```{python}
-#| warning: false
+#| title: Medals by Sport
 # Lump the sport column to top 15 categories, grouping others as Other
 top_15_sports = olympics["sport"].value_counts().nlargest(15).index
 olympics["sport"] = olympics["sport"].apply(lambda x: x if x in top_15_sports else "Other")
@@ -61,9 +67,10 @@ olympics["sport"] = olympics["sport"].cat.reorder_categories(new_order)
 )
 ```
 
-## Medals by year
+### Row - Medals by year {height=50%}
 
 ```{python}
+#| title: Medals by year
 # Count the occurrences of each medal per year
 olympics_count = olympics.groupby(["year", "medal"], observed=True).size().reset_index(name = "n")
 
@@ -86,9 +93,10 @@ olympics_count = olympics.groupby(["year", "medal"], observed=True).size().reset
 )
 ```
 
-## Medals by country
+## Column - Medals by country
 
 ```{python}
+#| title: Medals by Country
 # Count the occurrences of each medal per team
 olympics_count = olympics.groupby(["team", "medal"]).size().reset_index(name="n")
 
