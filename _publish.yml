@@ -2,3 +2,7 @@
   quarto-pub:
     - id: e6090430-27d8-4939-92bd-b994cfb4d9b0
       url: 'https://mine.quarto.pub/olympic-games'
+- source: olympicdash-py-3.qmd
+  quarto-pub:
+    - id: 5899dd20-0212-4140-9364-d42538bd2e9d
+      url: 'https://prajwalc.quarto.pub/olympic-games'
